@@ -1,0 +1,45 @@
+<div *ngIf="!anime" class="container-fuild home-container">
+    <div class="home-description-container">
+        <h1>Welcome to</h1>
+        <a class="navbar-brand zangyo-text-icon">Zangyo Anime</a>
+        <p>Study overtime | Work overtime | Read Anime info overtime</p>
+        
+        <!-- Search Form -->
+        <form class="d-flex col-md-5 home-form-container" role="search"
+                [formGroup]="searchForm" (ngSubmit)="searchAnimeByTitle()">
+            <input class="form-control me-2" type="search" placeholder="eg. Attack On Titan" formControlName="animeTitle">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+          </form>
+    </div>
+  </div>
+  <a *ngIf="!anime" class="imageCredits" href="https://www.freepik.com/free-vector/gradient-tokyo-skyline-with-neon-colours_9925859.htm?query=anime&collectionId=2766&&position=15&from_view=collections">Image by pikisuperstar</a>
+  <!-- <a href="https://www.freepik.com/free-vector/city-skyline-with-buildings-bridge-lake-river-night_12873045.htm?query=anime&collectionId=2766&&position=24&from_view=collections">Image by upklyak</a> on Freepik -->
+  <!-- <a href="https://www.freepik.com/free-vector/gradient-tokyo-skyline-with-neon-colours_9979502.htm?query=anime&collectionId=2766&&position=17&from_view=collections">Image by pikisuperstar</a> on Freepik -->
+
+
+
+<!-- Same as Trending, maybe don't DRY code -->
+<div *ngIf="anime" class="container">
+  <div class="row">
+    <div class="col" *ngFor="let a of anime.data">
+      <a routerLink="/anime" [state]="{ animeId: a.mal_id }">
+
+        <div class="card mb-3">
+          <div class="card-container">
+              <img src={{a.images.jpg.large_image_url}} class="card-img-top">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ a.title }}</h5>
+            <p class="card-text">{{ a.synopsis }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="anime && anime.data.length === 0" class="container">
+  <div class="alert alert-danger" role="alert">
+      No Anime found. Please try again.
+  </div>
+</div>

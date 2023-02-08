@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Zangyo Anime</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/home" routerLinkActive="active">Anime</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/trending" routerLinkActive="active">Trending</a>
+          </li>
+          <li class="nav-item dropdown" routerLinkActive="active">
+            <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Genres
+            </a>
+            <ul *ngIf="genres?.data" class="dropdown-menu">
+              <li *ngFor="let genre of genres.data">
+                <a *ngIf="genre.mal_id === 1 || 
+                          genre.mal_id === 2 || 
+                          genre.mal_id === 46 || 
+                          genre.mal_id === 4 || 
+                          genre.mal_id === 22 || 
+                          genre.mal_id === 24 || 
+                          genre.mal_id === 30 || 
+                          genre.mal_id === 56 || 
+                          genre.mal_id === 19 || 
+                          genre.mal_id === 71 || 
+                          genre.mal_id === 3 || 
+                          genre.mal_id === 31"
+                class="dropdown-item" routerLink="/genre" [state]="{ genre_name : genre.name }">{{ genre.name }}</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li *ngFor="let genre of genres.data">
+                <a *ngIf="genre.mal_id === 42 || 
+                          genre.mal_id === 25 || 
+                          genre.mal_id === 27"
+                class="dropdown-item" routerLink="/genre" [state]="{ genre_name : genre.name }">{{ genre.name }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">My Watchlist</a>
+          </li>
+        </ul>
+        <!-- <form *ngIf="false" class="d-flex" role="search" [formGroup]="searchForm" (ngSubmit)="onClickNavbarSearch()">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" formControlName="animeTitle">
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>

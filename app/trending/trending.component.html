@@ -1,0 +1,24 @@
+<div *ngIf="anime" class="container">
+    <div class="row">
+      <div class="col" *ngFor="let a of anime.data">
+        <a routerLink="/anime" [state]="{ animeId: a.mal_id }">
+  
+          <div class="card mb-3">
+            <div class="card-container">
+                <img src={{a.images.jpg.large_image_url}} class="card-img-top">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ a.title }}</h5>
+              <p class="card-text">{{ a.synopsis }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="anime && anime.data.length === 0" class="container">
+    <div class="alert alert-danger" role="alert">
+        No Anime found. Please try again.
+    </div>
+  </div>

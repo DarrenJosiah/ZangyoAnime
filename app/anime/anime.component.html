@@ -1,0 +1,60 @@
+
+<h1 class="m-5">Anime</h1>
+<div class="anime-container">
+
+    <!-- Cover Image -->
+    <div class="anime-img-container m-3">
+        <img src={{animeData?.data?.images?.jpg?.large_image_url}} class="anime-info-img">
+    </div>
+
+    <!-- Title -->
+    <div class="anime-info-container m-3">
+        <p class="anime-info-jap-title">{{ animeData?.data?.title_japanese }}</p>
+        <p class="anime-info-eng-title">{{ animeData?.data?.title }}</p>
+    </div>
+
+    <!-- Synopsis -->
+    <div class="anime-info-container m-3">
+        <h3>Synopsis:</h3>
+        <p class="anime-info-synopsis">{{ animeData?.data?.synopsis }}</p>
+    </div>
+
+    <!-- Status -->
+    <div class="anime-info-container m-3">
+        <h3>Status:</h3>
+        <p *ngIf="animeData?.data?.status === 'Finished Airing'; else elseBlock" class="text-danger"><strong>{{ animeData?.data?.status }}</strong></p>
+        <ng-template #elseBlock>
+            <p class="text-success">{{ animeData?.data?.status }}</p>
+        </ng-template>
+        <p ><em>{{ animeData?.data?.aired?.string }}</em></p>
+    </div>
+
+    <!-- Episodes -->
+    <div class="anime-info-container m-3">
+        <h3>Episodes:</h3>
+        <p>{{ animeData?.data?.episodes }}</p>
+    </div>
+
+    <!-- Popularity, Rank & Rating -->
+    <div class="anime-info-container m-3">
+        <h3>Popularity:</h3>
+        <p>{{ animeData?.data?.popularity }}</p>
+        <h3>Rank:</h3>
+        <p>{{ animeData?.data?.rank }}</p>
+        <h3>Rating:</h3>
+        <p>{{ animeData?.data?.rating }}</p>
+    </div>
+
+    <!-- Genre -->
+    <div class="anime-info-container m-3">
+        <h3>Genre:</h3>
+        <p *ngFor="let anime of animeData?.data?.genres">{{ anime.name }}</p>
+    </div>
+
+    <!-- Studios -->
+    <div class="anime-info-container m-3">
+        <h3>Studios:</h3>
+        <p *ngFor="let anime of animeData?.data?.studios">{{ anime.name }}</p>
+    </div>
+</div>
+
